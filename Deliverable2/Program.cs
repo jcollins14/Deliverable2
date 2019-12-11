@@ -8,26 +8,26 @@ namespace Deliverable2
         {
             string input = "";
             string message = "";
-            int checksum = "";
-            string scan = "";
-            int convert = 0;
+            int checksum = 0;
 
             Console.WriteLine("Please input a message to be encoded.");
             input = Console.ReadLine();
-            input.ToUpper();
+            input = input.ToUpper();
 
-            while (input != "")
+            foreach (char a in input)
             {
-                scan = input.Substring(0, 1);
-                input.Remove(0, 1);
-                /* Get Unicode value from Scan and put into convert */
-                checksum += convert;
-                message += (convert - 64) + "- "; 
+                int encode = a;
+                checksum += encode;
+                encode -= 64;
+                message += (encode.ToString()) + "-";
             }
 
-            Console.WriteLine("Your encoded message is " + message);
-            Console.WriteLine("Your checksum is " + checksum);
+            int length = message.Length;
+            length -= 1;
+            message = message.Remove(length, 1);
 
+            Console.WriteLine("Your encoded message is: " + message);
+            Console.WriteLine("Your checksum is: " + checksum);
         }
     }
 }
